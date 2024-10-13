@@ -15,7 +15,9 @@ const AdminLogin = () => {
     try {
       const response = await axios.post("http://localhost:3001/api/login", { email, password });
       // Store the token in local storage or context (you may want to set up a context provider for global state)
+      // localStorage.setItem('token', token);
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem('userType', 'admin');
 
       // Navigate to the admin dashboard after successful login
       navigate("/admin-dashboard");

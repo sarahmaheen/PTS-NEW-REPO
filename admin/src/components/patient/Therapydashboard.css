@@ -1,0 +1,414 @@
+/* Container for the horizontally scrollable calendar */
+.horizontal-calendar {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .date-scroll {
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    padding: 10px;
+    scrollbar-width: thin; /* For Firefox */
+    scroll-behavior: smooth;
+  }
+  
+  .date-button {
+    background-color: #f3f3f3;
+    border: none;
+    margin-right: 10px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .date-button.active {
+    background-color: #29A167; /* Active date button color */
+    color: white;
+  }
+  
+  .date-button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Responsive layout for smaller screens */
+  @media (max-width: 768px) {
+    .date-scroll {
+      padding: 5px;
+    }
+  
+    .date-button {
+      margin-right: 5px;
+      padding: 8px 12px;
+    }
+  }
+  
+  /* Desktop large screen */
+  @media (min-width: 1024px) {
+    .date-button {
+      margin-right: 12px;
+      padding: 12px 18px;
+    }
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* Therapy Details Container */
+.therapy-details-container {
+    /* background-color: #fff; */
+    background-color:red;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    margin-top: 30px;
+  }
+  
+  .therapy-details-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .therapy-details-info {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 5px;
+  }
+  
+  .therapy-goals {
+    margin-top: 20px;
+  }
+  
+  .therapy-goals h3 {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .therapy-goals ul {
+    list-style: disc;
+    padding-left: 20px;
+  }
+  
+  .therapy-goals li {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 5px;
+  }
+  
+  .therapy-details-placeholder {
+    font-size: 1.2rem;
+    color: #666;
+    margin-top: 20px;
+  }
+  
+
+
+
+
+
+  /* Overall container styling */
+.patient-details-container,
+.therapy-details-container {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px 0;
+  color: #333;
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: #2d4059;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 1rem;
+  color: #3f4d67;
+}
+
+.patient-details-info,
+.therapy-details-info {
+  margin: 10px 0;
+}
+
+strong {
+  color: black;
+  font-size: 1.5rem;
+}
+
+/* Tabs container styling */
+.tab-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #008cba;
+  color: white;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.tab-button.active {
+  background-color: #ff5722;
+}
+
+.tab-button:hover {
+  background-color: #006994;
+}
+
+/* Observations and daily activities styling */
+.therapy-observations, 
+.therapy-daily-activities {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  font-size: 1rem;
+  color: #333;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* 
+.progress-bar-container {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  height: 20px;
+  margin: 20px 0;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #81c784);
+  border-radius: 8px;
+  transition: width 0.4s ease;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* therapy-dashboard-container styles */
+.therapy-dashboard-container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Title styles */
+.therapy-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #4a4a4a;
+}
+
+/* Month/Year Display styles */
+.month-year-display {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #888;
+}
+
+/* Calendar Container styles */
+.calendar-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-bottom: 30px;
+}
+
+.date-scroll {
+  display: flex;
+}
+
+/* Button styles */
+.date-button {
+  background-color: #e2e2e2;
+  border: none;
+  padding: 10px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.date-button:hover {
+  background-color: #d4d4d4;
+}
+
+.date-button.active {
+  background-color: #29A167;
+  color: white;
+}
+
+/* Patient Details styles */
+.patient-details-container {
+  margin-bottom: 30px;
+}
+
+.patient-details-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #CB6BE5;
+}
+
+.patient-details-info {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+/* Therapy Details styles */
+.therapy-details-container {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.therapy-details-title {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.therapy-details-info {
+  margin: 10px 0;
+}
+
+/* Tab styles */
+.tab-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #e2e2e2;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tab-button.active {
+  background-color:#29A167;
+  color: white;
+}
+
+.tab-button:hover {
+  background-color: #d4d4d4;
+}
+
+
+/* Observations and Daily Activities styles */
+.therapy-observations, .therapy-daily-activities {
+  margin: 20px 0;
+}
+
+.therapy-observations h3, .therapy-daily-activities h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.progress-bar-container {
+  margin: 20px 0;
+  height: 20px;
+  background-color: #e2e2e2;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #CB6BE5;
+  transition: width 0.3s;
+}
+
+/* Placeholder styles */
+.therapy-details-placeholder {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #aaa;
+}

@@ -1,10 +1,11 @@
 
 
 // export default Navbar;
-import { Menu, House, Plus, Heart, Users, FileText, ClipboardList, User } from "lucide-react"; // Import necessary icons
+import { Menu, House, Plus, Heart, Users, FileText, ClipboardList, User, LogOut } from "lucide-react"; // Import necessary icons
 import { useState } from "react";
+
 import { AnimatePresence, motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Updated NAVBAR_ITEMS with Home and new icons for each item
 const NAVBAR_ITEMS = [
@@ -54,10 +55,20 @@ const NAVBAR_ITEMS = [
 
 const Navbar = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false); // State to control navbar visibility
-
+  const navigate = useNavigate();
   const toggleNavbar = () => {
     // Toggle the navbar open state
     setIsNavbarOpen((prev) => !prev);
+  };
+
+
+  const handleLogout = () => {
+    // Clear token and userType from localStorage
+    localStorage.removeItem('token');
+    localStorage.removeItem('userType');
+    
+    // Redirect to login page
+    navigate('/admin-login');
   };
 
   return (
@@ -101,6 +112,28 @@ const Navbar = () => {
             </Link>
           ))}
         </nav>
+
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={handleLogout} // Attach the logout functionality
+          className='flex items-center p-4 text-sm font-medium rounded-lg hover:bg-red-500 transition-colors mb-2 cursor-pointer mt-auto'
+        >
+          <LogOut size={20} style={{ color: "red", minWidth: "20px" }} />
+          <AnimatePresence>
+            {isNavbarOpen && (
+              <motion.span
+                className='ml-4 whitespace-nowrap'
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: "auto" }}
+                exit={{ opacity: 0, width: 0 }}
+                transition={{ duration: 0.2, delay: 0 }}
+              >
+                Logout
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </motion.button>
       </div>
     </motion.div>
   );

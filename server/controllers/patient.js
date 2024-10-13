@@ -160,7 +160,7 @@ router.get('/allpatients', async (req, res) => {
 
 
 // Delete patient by ID
-router.delete('/delete-patient/:id', async (req, res) => {
+router.delete('/delete-patient/:id',verifyJWT, async (req, res) => {
   const { id } = req.params;
   
   try {
@@ -180,7 +180,7 @@ router.delete('/delete-patient/:id', async (req, res) => {
 
 
 // update the patient 
-router.put('/update-patient/:id', async (req, res) => {
+router.put('/update-patient/:id',verifyJWT, async (req, res) => {
   const { id } = req.params; // Get the patient ID from the URL
   const updateFields = req.body; // Get the fields to update from the request body
   console.log(updateFields)
