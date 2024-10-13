@@ -19,6 +19,7 @@ const CategoryDistributionChart = () => {
         });
         
         // Extract and count therapy types
+        console.log(therapyData, "mkkkkkkkkkkkkkkkkkk")
         const therapyCounts = {};
         response.data.forEach((patient) => {
           patient.therapy.forEach((therapy) => {

@@ -20,6 +20,7 @@ const AdminDashboard = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
+        console.log("ppppppppp",patientResponse.data.count)
         setPatientCount(patientResponse.data.count);
 
         // Fetch the count of therapists
@@ -36,15 +37,16 @@ const AdminDashboard = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        setTherapyDistribution(therapyResponse.data);
+        console.log("jeeeeeeeeeeeee",therapistResponse);
+        setTherapyDistribution(therapyResponse.data.count);
 
         // Fetch new patients data for the NewPatientsChart
-        const newPatientsResponse = await axios.get("http://localhost:3001/api/new-patients", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
-        setNewPatientsData(newPatientsResponse.data);
+        // const newPatientsResponse = await axios.get("http://localhost:3001/api/new-patients", {
+        //   headers: {
+        //     Authorization: `Bearer ${localStorage.getItem("token")}`,
+        //   },
+        // });
+        // setNewPatientsData(newPatientsResponse);
       } catch (error) {
         console.error("Error fetching dashboard data:", error);
       }

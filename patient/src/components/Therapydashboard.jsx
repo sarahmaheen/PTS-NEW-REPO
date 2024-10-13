@@ -1585,361 +1585,183 @@ function Therapydashboard() {
 //   );
 
 
-// return (
-//   <div className="therapy-dashboard-container p-6 bg-gray-100 min-h-screen font-mono">
-//     {/* Title with User Icon */}
-//     <h1 className="therapy-title text-3xl font-bold text-[#CB6BE5] mb-4 flex items-center space-x-2">
-//       <User className="text-[#CB6BE5]" />
-//       <span>Therapy Goals</span>
-//     </h1>
-
-//     {/* Month/Year Display */}
-//     {currentMonth && (
-//       <div className="month-year-display text-xl text-gray-700 mb-4 flex items-center space-x-2">
-//         <Calendar className="text-[#CB6BE5]" />
-//         <span>{currentMonth}</span>
-//       </div>
-//     )}
-
-//     {/* Horizontal Scroll Calendar */}
-//     <div className="calendar-container overflow-x-auto mb-6">
-//       {patientDetails && (
-//         <div className="horizontal-calendar flex space-x-2">
-//           <div className="date-scroll flex justify-between space-x-2">
-//             {Array.from({ length: patientDetails.therapyCompletedDays }, (_, index) => {
-//               const date = new Date(patientDetails.firstLoginDate);
-//               date.setDate(date.getDate() + index);
-//               return (
-//                 <button
-//                   key={index}
-//                   className={`date-button px-4 py-2 rounded-md transition-colors duration-300 ease-in-out ${
-//                     selectedDate.getDate() === date.getDate()
-//                       ? 'bg-[#CB6BE5] text-white'
-//                       : 'bg-gray-200 hover:bg-[#CB6BE5] hover:text-white'
-//                   }`}
-//                   onClick={() => handleCalendarClick(date)}
-//                 >
-//                   <Calendar className="inline-block mr-1 text-white" />
-//                   {date.getDate()}
-//                 </button>
-//               );
-//             })}
-//           </div>
-//         </div>
-//       )}
-//     </div>
-
-//     {/* Patient Details Section */}
-//     {patientDetails && (
-//       <div className="patient-details-container mb-6 p-4 bg-white shadow-md rounded-md transition-shadow duration-300 ease-in-out hover:shadow-lg">
-//         <h2 className="patient-details-title text-2xl font-semibold text-gray-800 mb-2 flex items-center space-x-2">
-//           <User className="text-[#CB6BE5]" />
-//           <span>{patientDetails.name}'s Therapy Goals</span>
-//         </h2>
-//         <p className="patient-details-info text-gray-600">
-//           First Login Date: {new Date(patientDetails.firstLoginDate).toLocaleDateString()}
-//         </p>
-//         <p className="patient-details-info text-gray-600">
-//           Therapy Completed Days: {patientDetails.therapyCompletedDays}
-//         </p>
-//       </div>
-//     )}
-
-//     {/* Display Selected Therapy Details */}
-//     {selectedTherapy ? (
-//       <div className="therapy-details-container p-4 bg-white shadow-md rounded-md transition-shadow duration-300 ease-in-out hover:shadow-lg">
-//         <div className="therapy-header flex justify-between items-center mb-4">
-//           <h2 className="therapy-details-title text-xl font-semibold flex items-center space-x-2">
-//             <Activity className="text-[#CB6BE5]" />
-//             <span>Therapy Details for {selectedDate.toDateString()}</span>
-//           </h2>
-//         </div>
-
-//         {/* Show therapists */}
-//         <p className="therapy-details-info mb-2 flex items-center space-x-2">
-//           <User className="text-[#CB6BE5]" />
-//           <span>
-//             <strong>Therapist:</strong>{' '}
-//             {therapists.length > 0
-//               ? therapists.map((t) => t.name).join(', ')
-//               : 'No therapists found'}
-//           </span>
-//         </p>
-
-//         {/* Therapy type */}
-//         <p className="therapy-details-info mb-6">
-//           <strong>Therapy Type:</strong> {selectedTherapy.therapyNames.join(', ')}
-//         </p>
-
-//         {/* Tabs for switching between "Observations" and "Daily Activities" */}
-//         <div className="tab-container flex justify-between space-x-4 mb-6">
-//           <button
-//             className={`tab-button py-2 px-6 rounded-md transition-all duration-300 ease-in-out ${
-//               activeTab === 'observations'
-//                 ? 'bg-[#CB6BE5] text-white shadow-lg'
-//                 : 'bg-gray-200 hover:bg-[#CB6BE5] hover:text-white'
-//             }`}
-//             onClick={() => toggleTab('observations')}
-//           >
-//             Observations
-//           </button>
-//           <button
-//             className={`tab-button py-2 px-6 rounded-md transition-all duration-300 ease-in-out ${
-//               activeTab === 'dailyActivities'
-//                 ? 'bg-[#CB6BE5] text-white shadow-lg'
-//                 : 'bg-gray-200 hover:bg-[#CB6BE5] hover:text-white'
-//             }`}
-//             onClick={() => toggleTab('dailyActivities')}
-//           >
-//             Daily Activities
-//           </button>
-//         </div>
-
-//         {/* Conditionally render based on the active tab */}
-//         {activeTab === 'observations' && (
-//           <div className="therapy-observations mb-6">
-//             <h3 className="font-semibold mb-4">Observations</h3>
-//             <ul className="space-y-2">
-//               {Object.entries(selectedTherapy.observations).map(
-//                 ([key, value]) =>
-//                   value &&
-//                   value.trim() !== '' && (
-//                     <li key={key}>
-//                       <strong>{key}:</strong> {value}
-//                     </li>
-//                   )
-//               )}
-//             </ul>
-//           </div>
-//         )}
-
-//         {activeTab === 'dailyActivities' && (
-//           <div className="therapy-daily-activities mb-6">
-//             <h3 className="font-semibold mb-4 flex items-center space-x-2">
-//               <CheckSquare className="text-[#CB6BE5]" />
-//               <span>Daily Activities</span>
-//             </h3>
-//             <ul className="space-y-2">
-//               {selectedTherapy.dailyActivities.map((activity, activityIndex) => (
-//                 <li key={activityIndex} className="flex items-center space-x-2">
-//                   <label className="flex items-center space-x-2">
-//                     <input
-//                       type="checkbox"
-//                       onChange={(e) =>
-//                         handleActivityChange(activityIndex, e.target.checked)
-//                       }
-//                       checked={checkedActivities[activityIndex] || false}
-//                       className="activity-checkbox h-4 w-4 transition-all duration-300 ease-in-out"
-//                     />
-//                     <span>{activity}</span>
-//                   </label>
-//                 </li>
-//               ))}
-//             </ul>
-
-//             <div className="progress-bar-container bg-gray-200 rounded-full h-2 mt-4 mb-2">
-//               <div
-//                 className="progress-bar bg-[#CB6BE5] h-2 rounded-full transition-all duration-300 ease-in-out"
-//                 style={{ width: `${calculateProgress()}%` }}
-//               ></div>
-//             </div>
-//             <p>{calculateProgress()}% Completed</p>
-//             <button
-//               className="mt-4 bg-[#CB6BE5] text-white px-4 py-2 rounded-md transition-all duration-300 ease-in-out hover:bg-[#A254CA]"
-//               onClick={updateDailyActivity}
-//             >
-//               Update Activity
-//             </button>
-//           </div>
-//         )}
-//       </div>
-//     ) : (
-//       <p className="therapy-details-placeholder text-gray-600">
-//         Select a date to view therapy details.
-//       </p>
-//     )}
-//   </div>
-// );
-
 
 return (
-  <div className="therapy-dashboard-container p-6 bg-gray-100 min-h-screen font-mono">
-    {/* Title with User Icon */}
-    <h1 className="therapy-title text-3xl font-bold text-black mb-4 flex items-center space-x-2">
-      <User className="text-[#CB6BE5]" />
-      <span>Therapy Goals</span>
-    </h1>
+  <div className="therapy-dashboard-container p-4 sm:p-6 bg-gray-100 min-h-screen font-mono">
+  {/* Title with User Icon */}
+  <h1 className="therapy-title text-2xl sm:text-3xl font-bold text-black mb-4 flex items-center space-x-2">
+    <User className="text-[#CB6BE5]" />
+    <span>Therapy Goals</span>
+  </h1>
 
-    {/* Month/Year Display */}
-    {currentMonth && (
-      <div className="month-year-display text-xl text-black mb-4 flex items-center space-x-2">
-        <span style={{ color: '#29A167' }}>{currentMonth}</span>
+  {/* Month/Year Display */}
+  {currentMonth && (
+    <div className="month-year-display text-lg sm:text-xl text-black mb-4 flex items-center space-x-2">
+      <span style={{ color: '#29A167' }}>{currentMonth}</span>
+    </div>
+  )}
+
+  {/* Horizontal Scroll Calendar */}
+  <div className="calendar-container overflow-x-auto mb-6">
+    {patientDetails && (
+      <div className="horizontal-calendar flex space-x-2">
+        <div className="date-scroll flex space-x-2">
+          {Array.from({ length: patientDetails.therapyCompletedDays }, (_, index) => {
+            const date = new Date(patientDetails.firstLoginDate);
+            date.setDate(date.getDate() + index);
+            return (
+              <button
+                key={index}
+                className={`date-button px-3 py-2 rounded-md transition-colors duration-300 ease-in-out ${
+                  selectedDate.getDate() === date.getDate()
+                    ? 'bg-[#CB6BE5] text-white'
+                    : 'bg-gray-200 hover:bg-[#CB6BE5] hover:text-white'
+                }`}
+                onClick={() => handleCalendarClick(date)}
+              >
+                <span style={{ color: '#29A167' }}>{date.getDate()}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    )}
+  </div>
+
+  {/* Parent Flex Container for Patient and Therapy Details */}
+  <div className="details-container flex flex-col md:flex-row justify-between mb-6 space-y-4 md:space-y-0">
+    {/* Patient Details Section */}
+    {patientDetails && (
+      <div className="patient-details-container flex-1 p-4 bg-[#CB6BE5] text-black shadow-md rounded-md transition-shadow duration-300 ease-in-out hover:shadow-lg">
+        <h2 className="patient-details-title text-xl sm:text-2xl font-semibold mb-2 flex items-center space-x-2">
+          <User className="text-[#CB6BE5]" />
+          <span>{patientDetails.name}'s Therapy Goals</span>
+        </h2>
+        <p className="patient-details-info">
+          First Login Date: {new Date(patientDetails.firstLoginDate).toLocaleDateString()}
+        </p>
+        <p className="patient-details-info">
+          Therapy Completed Days: {patientDetails.therapyCompletedDays}
+        </p>
       </div>
     )}
 
-    {/* Horizontal Scroll Calendar */}
-    <div className="calendar-container overflow-x-auto mb-6">
-      {patientDetails && (
-        <div className="horizontal-calendar flex space-x-2">
-          <div className="date-scroll flex justify-between space-x-2">
-            {Array.from({ length: patientDetails.therapyCompletedDays }, (_, index) => {
-              const date = new Date(patientDetails.firstLoginDate);
-              date.setDate(date.getDate() + index);
-              return (
-                <button
-                  key={index}
-                  className={`date-button px-4 py-2 rounded-md transition-colors duration-300 ease-in-out ${
-                    selectedDate.getDate() === date.getDate()
-                      ? 'bg-[#CB6BE5] text-white'
-                      : 'bg-gray-200 hover:bg-[#CB6BE5] hover:text-white'
-                  }`}
-                  onClick={() => handleCalendarClick(date)}
-                >
-                  <span style={{ color: '#29A167' }}>{date.getDate()}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      )}
-    </div>
-
-    {/* Parent Flex Container for Patient and Therapy Details */}
-    <div className="details-container flex flex-wrap justify-between mb-6">
-      {/* Patient Details Section */}
-      {patientDetails && (
-        <div className="patient-details-container flex-1 mb-4 p-4 bg-[#CB6BE5] text-black shadow-md rounded-md transition-shadow duration-300 ease-in-out hover:shadow-lg">
-          <h2 className="patient-details-title text-2xl font-semibold mb-2 flex items-center space-x-2">
-            <User className="text-[#CB6BE5]" />
-            <span>{patientDetails.name}'s Therapy Goals</span>
+    {/* Display Selected Therapy Details */}
+    {selectedTherapy ? (
+      <div className="therapy-details-container flex-1 p-4 bg-[#CB6BE5] text-black shadow-md rounded-md transition-shadow duration-300 ease-in-out hover:shadow-lg">
+        <div className="therapy-header flex justify-between items-center mb-4">
+          <h2 className="therapy-details-title text-lg sm:text-xl font-semibold flex items-center space-x-2">
+            <Activity className="text-[#CB6BE5]" />
+            <span>Therapy Details for {selectedDate.toDateString()}</span>
           </h2>
-          <p className="patient-details-info">
-            First Login Date: {new Date(patientDetails.firstLoginDate).toLocaleDateString()}
-          </p>
-          <p className="patient-details-info">
-            Therapy Completed Days: {patientDetails.therapyCompletedDays}
-          </p>
         </div>
-      )}
 
-      {/* Display Selected Therapy Details */}
-      {selectedTherapy ? (
-        <div className="therapy-details-container flex-1 mb-4 p-4 bg-[#CB6BE5] text-black shadow-md rounded-md transition-shadow duration-300 ease-in-out hover:shadow-lg">
-          <div className="therapy-header flex justify-between items-center mb-4">
-            <h2 className="therapy-details-title text-xl font-semibold flex items-center space-x-2">
-              <Activity className="text-[#CB6BE5]" />
-              <span>Therapy Details for {selectedDate.toDateString()}</span>
-            </h2>
-          </div>
-
-          {/* Show therapists */}
-          <p className="therapy-details-info mb-2 flex items-center space-x-2">
-            <User className="text-[#CB6BE5]" />
-            <span>
-              <strong>Therapist:</strong>{' '}
-              {therapists.length > 0
-                ? therapists.map((t) => t.name).join(', ')
-                : 'No therapists found'}
-            </span>
-          </p>
-
-          {/* Therapy type */}
-          <p className="therapy-details-info mb-6">
-            <strong>Therapy Type:</strong> {selectedTherapy.therapyNames.join(', ')}
-          </p>
-
-          {/* Tabs for switching between "Observations" and "Daily Activities" */}
-          <div className="tab-container flex justify-between space-x-4 mb-6">
-            <button
-              className={`tab-button py-2 px-6 rounded-md transition-all duration-300 ease-in-out ${
-                activeTab === 'observations'
-                  ? 'bg-[#CB6BE5] text-white shadow-lg'
-                  : 'bg-gray-200 hover:bg-[#CB6BE5] hover:text-white'
-              }`}
-              onClick={() => toggleTab('observations')}
-            >
-              Observations
-            </button>
-            <button
-              className={`tab-button py-2 px-6 rounded-md transition-all duration-300 ease-in-out ${
-                activeTab === 'dailyActivities'
-                  ? 'bg-[#CB6BE5] text-white shadow-lg'
-                  : 'bg-gray-200 hover:bg-[#CB6BE5] hover:text-white'
-              }`}
-              onClick={() => toggleTab('dailyActivities')}
-            >
-              Daily Activities
-            </button>
-          </div>
-
-          {/* Conditionally render based on the active tab */}
-          {activeTab === 'observations' && (
-            <div className="therapy-observations mb-6">
-              <h3 className="font-semibold mb-4">Observations</h3>
-              <ul className="space-y-2">
-                {Object.entries(selectedTherapy.observations).map(
-                  ([key, value]) =>
-                    value &&
-                    value.trim() !== '' && (
-                      <li key={key}>
-                        <strong>{key}:</strong> {value}
-                      </li>
-                    )
-                )}
-              </ul>
-            </div>
-          )}
-
-          {activeTab === 'dailyActivities' && (
-            <div className="therapy-daily-activities mb-6">
-              <h3 className="font-semibold mb-4 flex items-center space-x-2">
-                <CheckSquare className="text-[#CB6BE5]" />
-                <span>Daily Activities</span>
-              </h3>
-              <ul className="space-y-2">
-                {selectedTherapy.dailyActivities.map((activity, activityIndex) => (
-                  <li key={activityIndex} className="flex items-center space-x-2">
-                    <label className="flex items-center space-x-2">
-                      <input
-                        type="checkbox"
-                        onChange={(e) =>
-                          handleActivityChange(activityIndex, e.target.checked)
-                        }
-                        checked={checkedActivities[activityIndex] || false}
-                        className="activity-checkbox h-4 w-4 transition-all duration-300 ease-in-out"
-                      />
-                      <span>{activity}</span>
-                    </label>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="progress-bar-container bg-gray-200 rounded-full h-2 mt-4 mb-2">
-                <div
-                  className="progress-bar bg-[#CB6BE5] h-2 rounded-full transition-all duration-300 ease-in-out"
-                  style={{ width: `${calculateProgress()}%` }}
-                ></div>
-              </div>
-              <p>{calculateProgress()}% Completed</p>
-              <button
-                className="mt-4 bg-[#CB6BE5] text-white px-4 py-2 rounded-md transition-all duration-300 ease-in-out hover:bg-[#A254CA]"
-                onClick={updateDailyActivity}
-              >
-                Update Activity
-              </button>
-            </div>
-          )}
-        </div>
-      ) : (
-        <p className="therapy-details-placeholder text-black">
-          Select a date to view therapy details.
+        {/* Show therapists */}
+        <p className="therapy-details-info mb-2 flex items-center space-x-2">
+          <User className="text-[#CB6BE5]" />
+          <span>
+            <strong>Therapist:</strong>{' '}
+            {therapists.length > 0
+              ? therapists.map((t) => t.name).join(', ')
+              : 'No therapists found'}
+          </span>
         </p>
-      )}
-    </div>
+
+        {/* Therapy type */}
+        <p className="therapy-details-info mb-6">
+          <strong>Therapy Type:</strong> {selectedTherapy.therapyNames.join(', ')}
+        </p>
+
+        {/* Tabs for switching between "Observations" and "Daily Activities" */}
+        <div className="tab-container flex flex-col sm:flex-row justify-between space-y-2 sm:space-y-0 mb-6">
+          <button
+            className={`tab-button py-2 px-4 sm:px-6 rounded-md transition-all duration-300 ease-in-out ${
+              activeTab === 'observations'
+                ? 'bg-[#CB6BE5] text-white shadow-lg'
+                : 'bg-gray-200 hover:bg-[#CB6BE5] hover:text-white'
+            }`}
+            onClick={() => toggleTab('observations')}
+          >
+            Observations
+          </button>
+          <button
+            className={`tab-button py-2 px-4 sm:px-6 rounded-md transition-all duration-300 ease-in-out ${
+              activeTab === 'dailyActivities'
+                ? 'bg-[#CB6BE5] text-white shadow-lg'
+                : 'bg-gray-200 hover:bg-[#CB6BE5] hover:text-white'
+            }`}
+            onClick={() => toggleTab('dailyActivities')}
+          >
+            Daily Activities
+          </button>
+        </div>
+
+        {/* Conditionally render based on the active tab */}
+        {activeTab === 'observations' && (
+          <div className="therapy-observations mb-6">
+            <h3 className="font-semibold mb-4">Observations</h3>
+            <ul className="space-y-2">
+              {Object.entries(selectedTherapy.observations).map(
+                ([key, value]) =>
+                  value &&
+                  value.trim() !== '' && (
+                    <li key={key}>
+                      <strong>{key}:</strong> {value}
+                    </li>
+                  )
+              )}
+            </ul>
+          </div>
+        )}
+
+        {activeTab === 'dailyActivities' && (
+          <div className="therapy-daily-activities mb-6">
+            <h3 className="font-semibold mb-4 flex items-center space-x-2">
+              <CheckSquare className="text-[#CB6BE5]" />
+              <span>Daily Activities</span>
+            </h3>
+            <ul className="space-y-2">
+              {selectedTherapy.dailyActivities.map((activity, activityIndex) => (
+                <li key={activityIndex} className="flex items-center space-x-2">
+                  <label className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      onChange={(e) =>
+                        handleActivityChange(activityIndex, e.target.checked)
+                      }
+                      checked={checkedActivities[activityIndex] || false}
+                      className="activity-checkbox h-4 w-4 transition-all duration-300 ease-in-out"
+                    />
+                    <span>{activity}</span>
+                  </label>
+                </li>
+              ))}
+            </ul>
+
+            <div className="progress-bar-container bg-gray-200 rounded-full h-2 mt-4 mb-2">
+              <div
+                className="progress-bar bg-[#CB6BE5] h-2 rounded-full transition-all duration-300 ease-in-out"
+                style={{ width: `${calculateProgress()}%` }}
+              ></div>
+            </div>
+            <p>{calculateProgress()}% Completed</p>
+            <button
+              className="mt-4 bg-[#CB6BE5] text-white px-4 py-2 rounded-md transition-all duration-300 ease-in-out hover:bg-[#A254CA]"
+              onClick={updateDailyActivity}
+            >
+              Update Activity
+            </button>
+          </div>
+        )}
+      </div>
+    ) : (
+      <p className="therapy-details-placeholder text-black">
+        Select a date to view therapy details.
+      </p>
+    )}
   </div>
-);
-
-
+</div>
+)
 }
 
 export default Therapydashboard;

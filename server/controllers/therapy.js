@@ -3,6 +3,7 @@
 import express from 'express';
 import Therapy from '../models/TherapyModel.js';  // Adjust the path based on your folder structure
 import Patient from '../models/PatientModel.js';
+import verifyJWT from '../middleware/verifyToken.js';
 
 const router = express.Router();
 
@@ -267,4 +268,17 @@ router.put('/update-dailyActivityTrack-therapy/:therapyId', async (req, res) => 
   }
 });
 
+
+
+router.get('/therapy-distribution', verifyJWT, async (req, res) => {
+  try {
+    // Count total therapies (assumes each Patient document represents a therapy)
+    const count = await Therapy.countDocuments();
+
+    res.json({ count }); // Send the total count in the response
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' }); // Handle errors
+  }
+});
 export default router;

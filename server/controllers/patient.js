@@ -234,6 +234,16 @@ router.get('/get-patient-by-name/:name', async (req, res) => {
   }
 });
 
+router.get('/patients-count',verifyJWT, async (req, res) => {
+  try {
+    const count = await Patient.countDocuments(); // Count documents in the Patient collection
+    console.log("ndwjwwjdddnwj",count)
+    res.json({ count }); // Send the count in the response
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' }); // Handle errors
+  }
+});
 
 
 

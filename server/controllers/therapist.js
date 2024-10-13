@@ -68,4 +68,16 @@ router.post('/therapistArrayForPatient', async (req, res) => {
         }
     });
 
+
+
+    router.get('/therapists-count',verifyJWT,  async (req, res) => {
+        try {
+          const count = await Therapist.countDocuments(); // Count documents in the Therapist collection
+          res.json({ count }); // Send the count in the response
+        } catch (error) {
+          console.error(error);
+          res.status(500).json({ message: 'Server error' }); // Handle errors
+        }
+      });
+      
 export default router;
