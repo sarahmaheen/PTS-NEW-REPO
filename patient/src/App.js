@@ -41,7 +41,7 @@ import Navbar from './components/Navbar'; // Import Navbar
 import { useState } from 'react'; // For controlling login state
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Handle login state
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Handle login state
 
   return (
     <div className="flex h-screen">
