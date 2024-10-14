@@ -242,6 +242,121 @@
 
 
 
+// import React, { useEffect, useState } from 'react';
+// import axios from 'axios';
+// import { Bar } from 'react-chartjs-2';
+// import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip, Legend } from 'chart.js';
+
+// ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
+
+// const Dashboard = () => {
+//   const [patientDetails, setPatientDetails] = useState(null);
+//   const [activityPercentages, setActivityPercentages] = useState([]);
+  
+//   // Fetch patient details
+//   useEffect(() => {
+//     const fetchPatientDetails = async () => {
+//       try {
+//         const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/patient-details`, {
+//           headers: {
+//             'Authorization': `Bearer ${localStorage.getItem('token')}`,
+//           },
+//         });
+
+//         const patientData = response.data;
+//         setPatientDetails(patientData);
+//         calculateActivityPercentages(patientData);
+//       } catch (error) {
+//         console.error('Error fetching patient details:', error);
+//       }
+//     };
+
+//     fetchPatientDetails();
+//   }, []);
+
+//   const calculateActivityPercentages = (patientData) => {
+//     // Assuming therapyId corresponds to therapy activities
+//     const percentages = patientData.therapyId.map((therapyId) => {
+//       // Dummy calculation for example, replace with actual logic
+//       return Math.random() * 100; // Replace with actual logic to calculate percentage
+//     });
+//     setActivityPercentages(percentages);
+//   };
+
+//   // Prepare data for bar chart (comparison of daily activities track)
+//   const barChartData = {
+//     labels: patientDetails?.therapy.map((therapy, index) => `Therapy ${index + 1}`) || [],
+//     datasets: [
+//       {
+//         label: 'Activity Percentages',
+//         data: activityPercentages,
+//         backgroundColor: activityPercentages.map(value => (value >= 50 ? '#42a5f5' : '#ff5252')),
+//         borderColor: '#1e88e5',
+//         borderWidth: 1,
+//       },
+//     ],
+//   };
+
+//   return (
+//     <div className="min-h-screen bg-gray-100 p-6 flex flex-col">
+//       {patientDetails ? (
+//         <>
+//           <h2 className="text-2xl font-bold mb-4">
+//             Welcome Back <span className="text-3xl">{patientDetails.name}</span>
+//           </h2>
+
+//           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full h-full">
+//             {/* Patient Profile Overview */}
+//             <div className="bg-white p-4 rounded-lg shadow-md">
+//               <h3 className="text-xl font-semibold mb-2">Patient Profile</h3>
+//               <p>Email: {patientDetails.email}</p>
+//               <p>Age: {patientDetails.age}</p>
+//               <p>Condition: {patientDetails.condition}</p>
+//               <p>Condition Level: {patientDetails.conditionLevel}</p>
+//               <p>Booking Type: {patientDetails.bookingType}</p>
+//               <p>Payment Amount: ${patientDetails.paymentAmount}</p>
+//               <p>Payment Method: {patientDetails.paymentMethod}</p>
+//             </div>
+
+//             {/* Therapy Progress Tracking */}
+//             <div className="bg-white p-4 rounded-lg shadow-md">
+//               <h3 className="text-xl font-semibold mb-4">Therapy Progress</h3>
+//               <Bar data={barChartData} />
+//             </div>
+
+//             {/* Therapist Information */}
+//             <div className="bg-white p-4 rounded-lg shadow-md">
+//               <h3 className="text-xl font-semibold mb-4">Therapists</h3>
+//               <ul>
+//                 {patientDetails.therapistArray.map((therapistId, index) => (
+//                   <li key={index}>Therapist ID: {therapistId}</li>
+//                 ))}
+//               </ul>
+//             </div>
+
+//             {/* Activity Log */}
+//             <div className="bg-white p-4 rounded-lg shadow-md">
+//               <h3 className="text-xl font-semibold mb-4">Recent Activities</h3>
+//               <ul>
+//                 {/* Mocking activity logs, replace with real data */}
+//                 <li>Completed Speech Exercise</li>
+//                 <li>Attended Behavioral Therapy</li>
+//               </ul>
+//             </div>
+//           </div>
+//         </>
+//       ) : (
+//         <p>Loading patient details...</p>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default Dashboard;
+
+
+
+
 
 
 
@@ -255,31 +370,16 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
+import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 const Dashboard = () => {
   const [patientDetails, setPatientDetails] = useState(null);
-  const [therapies, setTherapies] = useState([]);
-  const [therapists, setTherapists] = useState([]);
-  const [dailyActivitiesTrackStatus, setDailyActivitiesTrackStatus] = useState([]);
-
-  const fetchTherapiesAndTherapists = async (therapyIds, therapistIds) => {
-    try {
-      console.log(therapyIds,therapistIds)
-      const therapyResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/therapiesArrayForPatient`, { therapyIds });
-      console.log("kkkk",therapyResponse)
-      setTherapies(therapyResponse.data);
-
-      const therapistResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/therapistArrayForPatient`, { therapists: therapistIds });
-      setTherapists(therapistResponse.data);
-    } catch (error) {
-      console.error('Error fetching therapies or therapists:', error);
-    }
-  };
+  const [activityPercentages, setActivityPercentages] = useState([]);
+  const [therapists, setTherapists] = useState([]); // State to hold therapists data
 
   // Fetch patient details
   useEffect(() => {
@@ -292,40 +392,11 @@ const Dashboard = () => {
         });
 
         const patientData = response.data;
-        console.log(patientData)
         setPatientDetails(patientData);
+        calculateActivityPercentages(patientData);
 
-        // Fetch therapies and therapists using their IDs
-        console.log(patientData.therapyId, patientData.therapists)
-        fetchTherapiesAndTherapists(patientData.therapyId, patientData.therapistArray);
-
-        console.log("aaaaaaaaaaaaaaaaaaaaa",therapies)
-        // Compare dailyActivitiesTrack with dailyActivities length
-
-        // const trackStatus = therapies.dailyActivitiesTrack.map(index => {
-        //   return index < therapies.dailyActivities.length ? 'Valid' : 'Invalid';
-        // });
-        console.log("lllllllllllllll",therapies.data)
-        therapies.forEach(therapy => {
-          const { dailyActivities, dailyActivitiesTrack } = therapy;
-          console.log("mssssssssssssss",dailyActivities, dailyActivitiesTrack )
-          // Check if dailyActivities and dailyActivitiesTrack exist
-          if (dailyActivities && dailyActivitiesTrack) {
-            // Loop through the dailyActivitiesTrack array
-            dailyActivitiesTrack.forEach((activityIndex, idx) => {
-              // Compare the activity index with the dailyActivities array length
-              if (activityIndex >= 0 && activityIndex < dailyActivities.length) {
-                console.log(`Therapy ID: ${therapy._id}`);
-                console.log(`Index: ${activityIndex} - Activity: ${dailyActivities[activityIndex]}`);
-              } else {
-                console.log(`Therapy ID: ${therapy._id} - Invalid index: ${activityIndex}`);
-              }
-            });
-          }
-        });
-        const trackStatus=[1,3,4,5,7];
-        console.log(trackStatus)
-        setDailyActivitiesTrackStatus(trackStatus);
+        // Fetch therapists for the patient
+        await fetchTherapists(patientData.therapistArray);
       } catch (error) {
         console.error('Error fetching patient details:', error);
       }
@@ -334,15 +405,33 @@ const Dashboard = () => {
     fetchPatientDetails();
   }, []);
 
-  // Prepare data for bar chart (comparison of dailyActivitiesTrack)
+  const fetchTherapists = async (therapistIds) => {
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/therapistArrayForPatient`, { therapists: therapistIds });
+      setTherapists(response.data); // Update the therapists state with the fetched data
+    } catch (error) {
+      console.error('Error fetching therapists:', error);
+    }
+  };
+
+  const calculateActivityPercentages = (patientData) => {
+    // Assuming therapyId corresponds to therapy activities
+    const percentages = patientData.therapyId.map(() => {
+      // Dummy calculation for example, replace with actual logic
+      return Math.random() * 100; // Replace with actual logic to calculate percentage
+    });
+    setActivityPercentages(percentages);
+  };
+
+  // Prepare data for bar chart (comparison of daily activities track)
   const barChartData = {
-    labels: patientDetails?.dailyActivitiesTrack || [],
+    labels: patientDetails?.therapy.map((_, index) => `Therapy ${index + 1}`) || [],
     datasets: [
       {
-        label: 'Track Status',
-        data: dailyActivitiesTrackStatus.map(status => (status === 'Valid' ? 1 : 0)), // 1 for valid, 0 for invalid
-        backgroundColor: dailyActivitiesTrackStatus.map(status => (status === 'Valid' ? '#42a5f5' : '#ff5252')),
-        borderColor: dailyActivitiesTrackStatus.map(status => (status === 'Valid' ? '#1e88e5' : '#e53935')),
+        label: 'Activity Percentages',
+        data: activityPercentages,
+        backgroundColor: activityPercentages.map(value => (value >= 50 ? '#42a5f5' : '#ff5252')),
+        borderColor: '#1e88e5',
         borderWidth: 1,
       },
     ],
@@ -350,18 +439,59 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-6 flex flex-col">
-      <h2 className="text-2xl font-bold mb-4">Welcome Back <span className="text-3xl">{patientDetails?.name || 'Loading...'}</span></h2>
+      {patientDetails ? (
+        <>
+          <h2 className="text-2xl font-bold mb-4">
+            Welcome Back <span className="text-3xl">{patientDetails.name}</span>
+          </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full h-full">
-        {/* Bar Chart: Daily Activities Progress */}
-        <div className="bg-white p-4 rounded-lg">
-          <h3 className="text-xl font-semibold mb-4">Daily Activities Track Status</h3>
-          <Bar data={barChartData} />
-        </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full h-full">
+            {/* Patient Profile Overview */}
+            <div className="bg-white p-4 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold mb-2">Patient Profile</h3>
+              <p>Email: {patientDetails.email}</p>
+              <p>Age: {patientDetails.age}</p>
+              <p>Condition: {patientDetails.condition}</p>
+              <p>Condition Level: {patientDetails.conditionLevel}</p>
+              <p>Booking Type: {patientDetails.bookingType}</p>
+              <p>Payment Amount: ${patientDetails.paymentAmount}</p>
+              <p>Payment Method: {patientDetails.paymentMethod}</p>
+            </div>
 
-        {/* Other sections such as Therapy Goals, Daily Activities */}
-        {/* Your existing sections go here */}
-      </div>
+            {/* Therapy Progress Tracking */}
+            <div className="bg-white p-4 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold mb-4">Therapy Progress</h3>
+              <Bar data={barChartData} />
+            </div>
+
+            {/* Therapist Information */}
+            <div className="bg-white p-4 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold mb-4">Therapists</h3>
+              <ul>
+                {therapists.length > 0 ? (
+                  therapists.map((therapist, index) => (
+                    <li key={index}>Therapist Name: {therapist.name}</li> // Adjust based on therapist object structure
+                  ))
+                ) : (
+                  <li>No therapists available.</li>
+                )}
+              </ul>
+            </div>
+
+            {/* Activity Log */}
+            <div className="bg-white p-4 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold mb-4">Recent Activities</h3>
+              <ul>
+                {/* Mocking activity logs, replace with real data */}
+                <li>Completed Speech Exercise</li>
+                <li>Attended Behavioral Therapy</li>
+              </ul>
+            </div>
+          </div>
+        </>
+      ) : (
+        <p>Loading patient details...</p>
+      )}
     </div>
   );
 };
