@@ -15,7 +15,7 @@
 //   useEffect(() => {
 //     const fetchPatientDetails = async () => {
 //       try {
-//         const response = await axios.get('http://localhost:3001/api/patient-details', {
+//         const response = await axios.get('{process.env.REACT_APP_API_URL}/api/patient-details', {
 //           headers: {
 //             Authorization: `Bearer ${localStorage.getItem('token')}` // Get the token from localStorage
 //           }
@@ -35,7 +35,7 @@
 //   const fetchTherapies = async (therapyIds) => {
 //     try {
 //         console.log("ccccccccccccccccccccccccccccc",therapyIds)
-//       const response = await axios.post('http://localhost:3001/api/therapiesArrayForPatient', { therapyIds });
+//       const response = await axios.post('{process.env.REACT_APP_API_URL}/api/therapiesArrayForPatient', { therapyIds });
 //       console.log("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",response)
 //       return response.data;
 //     } catch (error) {
@@ -301,7 +301,7 @@
 //   useEffect(() => {
 //     const fetchPatientDetails = async () => {
 //       try {
-//         const response = await axios.get('http://localhost:3001/api/patient-details', {
+//         const response = await axios.get('{process.env.REACT_APP_API_URL}/api/patient-details', {
 //           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
 //         });
 //         setPatientDetails(response.data);
@@ -328,7 +328,7 @@
 //   const fetchTherapies = async (therapyIds) => {
 //     try {
 //         console.log("ccccccccccccccccccccccccccccc",therapyIds)
-//       const response = await axios.post('http://localhost:3001/api/therapiesArrayForPatient', { therapyIds });
+//       const response = await axios.post('{process.env.REACT_APP_API_URL}/api/therapiesArrayForPatient', { therapyIds });
 //       console.log("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",response)
 //       return response.data;
 //     } catch (error) {
@@ -702,7 +702,7 @@
 //   useEffect(() => {
 //     const fetchPatientDetails = async () => {
 //       try {
-//         const response = await axios.get('http://localhost:3001/api/patient-details', {
+//         const response = await axios.get('{process.env.REACT_APP_API_URL}/api/patient-details', {
 //           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
 //         });
 //         setPatientDetails(response.data);
@@ -729,7 +729,7 @@
 //   const fetchTherapies = async (therapyIds) => {
 //     try {
 //         console.log("ccccccccccccccccccccccccccccc",therapyIds)
-//       const response = await axios.post('http://localhost:3001/api/therapiesArrayForPatient', { therapyIds });
+//       const response = await axios.post('{process.env.REACT_APP_API_URL}/api/therapiesArrayForPatient', { therapyIds });
 //       console.log("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",response)
 //       return response.data;
 //     } catch (error) {
@@ -936,7 +936,7 @@
 //   useEffect(() => {
 //     const fetchPatientDetails = async () => {
 //       try {
-//         const response = await axios.get('http://localhost:3001/api/patient-details', {
+//         const response = await axios.get('{process.env.REACT_APP_API_URL}/api/patient-details', {
 //           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
 //         });
 //         setPatientDetails(response.data);
@@ -959,7 +959,7 @@
 
 //   const fetchTherapists = async (therapistIds) => {
 //     try {
-//       const response = await axios.post('http://localhost:3001/api/therapistArrayForPatient', { therapists: therapistIds });
+//       const response = await axios.post('{process.env.REACT_APP_API_URL}/api/therapistArrayForPatient', { therapists: therapistIds });
 //       console.log(response)
 //       setTherapists(response.data); // Set therapists in state
 //     } catch (error) {
@@ -1053,7 +1053,7 @@
 //         completedActivity: completedActivitiesCount // Sending count of completed activities
 //       };
 
-//       const response = await axios.put(`http://localhost:3001/api/update-dailyActivityTrack-therapy/${selectedTherapy._id}`, data);
+//       const response = await axios.put(`{process.env.REACT_APP_API_URL}/api/update-dailyActivityTrack-therapy/${selectedTherapy._id}`, data);
 
 //       if (response.status === 200) {
 //         console.log('Daily activity updated successfully:', response.data);
@@ -1069,7 +1069,7 @@
   
 //   const fetchTherapies = async (therapyIds) => {
 //     try {
-//       const response = await axios.post('http://localhost:3001/api/therapiesArrayForPatient', { therapyIds });
+//       const response = await axios.post('{process.env.REACT_APP_API_URL}/api/therapiesArrayForPatient', { therapyIds });
 //       return response.data;
 //     } catch (error) {
 //       console.error('Error fetching therapies:', error);
@@ -1261,7 +1261,7 @@ function Therapydashboard() {
   useEffect(() => {
     const fetchPatientDetails = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/patient-details', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/patient-details`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         console.log(response.data)
@@ -1285,7 +1285,7 @@ function Therapydashboard() {
 
   const fetchTherapists = async (therapistIds) => {
     try {
-      const response = await axios.post('http://localhost:3001/api/therapistArrayForPatient', { therapists: therapistIds });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/therapistArrayForPatient`, { therapists: therapistIds });
       console.log(response)
       setTherapists(response.data); // Set therapists in state
     } catch (error) {
@@ -1394,7 +1394,7 @@ function Therapydashboard() {
         completedActivity: completedActivitiesCount // Sending count of completed activities
       };
 
-      const response = await axios.put(`http://localhost:3001/api/update-dailyActivityTrack-therapy/${selectedTherapy._id}`, data);
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/api/update-dailyActivityTrack-therapy/${selectedTherapy._id}`, data);
 
       if (response.status === 200) {
         console.log('Daily activity updated successfully:', response.data);
@@ -1410,7 +1410,7 @@ function Therapydashboard() {
   
   const fetchTherapies = async (therapyIds) => {
     try {
-      const response = await axios.post('http://localhost:3001/api/therapiesArrayForPatient', { therapyIds });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/therapiesArrayForPatient`, { therapyIds });
       return response.data;
     } catch (error) {
       console.error('Error fetching therapies:', error);

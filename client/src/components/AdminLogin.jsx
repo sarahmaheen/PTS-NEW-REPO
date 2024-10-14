@@ -13,7 +13,7 @@ const AdminLogin = () => {
     setError(""); // Clear any previous error
 
     try {
-      const response = await axios.post("http://localhost:3001/api/login", { email, password });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/login`, { email, password });
       // Store the token in local storage or context (you may want to set up a context provider for global state)
       // localStorage.setItem('token', token);
       localStorage.setItem("token", response.data.token);

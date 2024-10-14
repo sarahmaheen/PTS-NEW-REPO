@@ -11,8 +11,9 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchPatientDetails = async () => {
       try {
+        // console.log("ndejfnejwnfk",{process.env.REACT_APP_API_URL})
         console.log(localStorage.getItem('token'))
-        const response = await axios.get('http://localhost:3001/api/patient-details', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/patient-details`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}` // Ensure you have stored the token
           }

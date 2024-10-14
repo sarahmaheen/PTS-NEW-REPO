@@ -15,7 +15,7 @@ const AdminDashboard = () => {
     const fetchData = async () => {
       try {
         // Fetch the count of patients
-        const patientResponse = await axios.get("http://localhost:3001/api/patients-count", {
+        const patientResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/patients-count`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -24,7 +24,7 @@ const AdminDashboard = () => {
         setPatientCount(patientResponse.data.count);
 
         // Fetch the count of therapists
-        const therapistResponse = await axios.get("http://localhost:3001/api/therapists-count", {
+        const therapistResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/therapists-count`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -32,7 +32,7 @@ const AdminDashboard = () => {
         setTherapistCount(therapistResponse.data.count);
 
         // Fetch therapy distribution data (from patient data)
-        const therapyResponse = await axios.get("http://localhost:3001/api/therapy-distribution", {
+        const therapyResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/therapy-distribution`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -41,7 +41,7 @@ const AdminDashboard = () => {
         setTherapyDistribution(therapyResponse.data.count);
 
         // Fetch new patients data for the NewPatientsChart
-        // const newPatientsResponse = await axios.get("http://localhost:3001/api/new-patients", {
+        // const newPatientsResponse = await axios.get("{process.env.REACT_APP_API_URL}/api/new-patients", {
         //   headers: {
         //     Authorization: `Bearer ${localStorage.getItem("token")}`,
         //   },

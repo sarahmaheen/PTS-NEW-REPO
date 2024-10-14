@@ -12,7 +12,7 @@
 //     e.preventDefault();
 //     try {
 //       console.log(email,password)
-//       const response = await axios.post('http://localhost:3001/api/patient-login', { email, password });
+//       const response = await axios.post('{process.env.REACT_APP_API_URL}/api/patient-login', { email, password });
 //       console.log('Login Success:', response.data);
 //       // You can handle the token or redirect the user here
 //       localStorage.setItem('token', response.data.token);
@@ -94,7 +94,8 @@ const Login = ({ setIsLoggedIn }) => {
     e.preventDefault();
     try {
       console.log(email, password);
-      const response = await axios.post('http://localhost:3001/api/patient-login', { email, password });
+      console.log(process.env.REACT_APP_API_URL)
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/patient-login`, { email, password });
       console.log('Login Success:', response.data);
       // Store the token and navigate to the dashboard
       localStorage.setItem('token', response.data.token);

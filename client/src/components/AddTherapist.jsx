@@ -21,7 +21,7 @@ const AddTherapist = () => {
         const token = localStorage.getItem("token");
 
         try {
-            const response = await axios.post("http://localhost:3001/api/add-therapist", therapistData, {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/add-therapist`, therapistData, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             alert(response.data.message);

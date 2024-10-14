@@ -10,7 +10,7 @@
 //     useEffect(() => {
 //         const fetchTherapies = async () => {
 //             try {
-//                 const response = await axios.get('http://localhost:3001/api/therapies');
+//                 const response = await axios.get('{process.env.REACT_APP_API_URL}/api/therapies');
 //                 console.log(response)
 //                 setTherapies(response.data);
 //                 console.log(therapy)
@@ -134,7 +134,7 @@ const GetAllTherapies = () => {
     useEffect(() => {
         const fetchTherapies = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/api/therapies');
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/therapies`);
                 setTherapies(response.data);
             } catch (error) {
                 setError('Error fetching therapies data.');
@@ -148,7 +148,7 @@ const GetAllTherapies = () => {
     // Function to handle delete therapy
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:3001/api/delete-therapy/${id}`);
+            await axios.delete(`${process.env.REACT_APP_API_URL}/api/delete-therapy/${id}`);
             // Filter out the deleted therapy from the state
             setTherapies(therapies.filter((therapy) => therapy._id !== id));
         } catch (error) {

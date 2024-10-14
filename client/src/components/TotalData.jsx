@@ -23,19 +23,19 @@ const TotalData = () => {
           return;
         }
 
-        const patientsResponse = await axios.get("http://localhost:3001/api/patients-count", {
+        const patientsResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/patients-count`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
 
-        const therapistsResponse = await axios.get("http://localhost:3001/api/therapists-count", {
+        const therapistsResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/therapists-count`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
 
-        const therapiesResponse = await axios.get("http://localhost:3001/api/therapy-distribution", {
+        const therapiesResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/therapy-distribution`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

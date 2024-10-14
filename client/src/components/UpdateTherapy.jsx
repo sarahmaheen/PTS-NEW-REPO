@@ -24,7 +24,7 @@ const UpdateTherapy = () => {
       try {
         console.log(therapyId)
         // Fetch therapy data
-        const therapyResponse = await axios.get(`http://localhost:3001/api/therapies/${therapyId}`);
+        const therapyResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/therapies/${therapyId}`);
         setPatientName(therapistsResponse.data.patientName || '')
         setTherapyData(therapyResponse.data);
         setTherapyNames(therapyResponse.data.therapyNames || []);
@@ -40,11 +40,11 @@ const UpdateTherapy = () => {
         setSelectedTherapist(therapyResponse.data.therapistId || ''); // Adjust according to your API response
 
         // Fetch all patients
-        const patientsResponse = await axios.get('http://localhost:3001/api/allpatients');
+        const patientsResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/allpatients`);
         setPatients(patientsResponse.data);
 
         // Fetch all therapists
-        const therapistsResponse = await axios.get('http://localhost:3001/api/therapists');
+        const therapistsResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/therapists`);
         setTherapists(therapistsResponse.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -79,7 +79,7 @@ const UpdateTherapy = () => {
     };
 
     try {
-      await axios.put(`http://localhost:3001/api/update-therapy/${therapyId}`, updatedData);
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/update-therapy/${therapyId}`, updatedData);
       alert('Therapy record updated successfully!');
     } catch (error) {
       console.error("Error updating therapy record:", error);

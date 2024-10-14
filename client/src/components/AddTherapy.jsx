@@ -22,7 +22,7 @@
 //     e.preventDefault();
 //     try {
 //       const therapistIdsArray = therapistIds.split(',').map(id => id.trim());
-//       const response = await axios.post('http://localhost:3001/api/add-therapy', {
+//       const response = await axios.post('{process.env.REACT_APP_API_URL}/api/add-therapy', {
 //         therapyName,
 //         therapistIds: therapistIdsArray,
 //         plan: plans,
@@ -178,7 +178,7 @@
 //   useEffect(() => {
 //     const fetchTherapists = async () => {
 //       try {
-//         const response = await axios.get('http://localhost:3001/api/therapists');
+//         const response = await axios.get('{process.env.REACT_APP_API_URL}/api/therapists');
 //         setTherapists(response.data);
 //       } catch (error) {
 //         console.error('Error fetching therapists:', error);
@@ -202,7 +202,7 @@
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
 //     try {
-//       const response = await axios.post('http://localhost:3001/api/add-therapy', {
+//       const response = await axios.post('{process.env.REACT_APP_API_URL}/api/add-therapy', {
 //         therapyName,
 //         therapistIds,
 //         plan: plans,
@@ -356,7 +356,7 @@
 //   useEffect(() => {
 //     const fetchTherapists = async () => {
 //       try {
-//         const response = await axios.get('http://localhost:3001/api/therapists');
+//         const response = await axios.get('{process.env.REACT_APP_API_URL}/api/therapists');
 //         setTherapists(response.data);
 //       } catch (error) {
 //         console.error('Error fetching therapists:', error);
@@ -380,7 +380,7 @@
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
 //     try {
-//       const response = await axios.post('http://localhost:3001/api/add-therapy', {
+//       const response = await axios.post('{process.env.REACT_APP_API_URL}/api/add-therapy', {
 //         therapyName,
 //         therapistIds,
 //         plan: plans,
@@ -552,7 +552,7 @@
     //     useEffect(() => {
     //         const fetchTherapists = async () => {
     //             try {
-    //                 const response = await axios.get('http://localhost:3001/api/therapists');
+    //                 const response = await axios.get('{process.env.REACT_APP_API_URL}/api/therapists');
     //                 setTherapists(response.data);
     //             } catch (error) {
     //                 console.error('Error fetching therapists:', error);
@@ -586,7 +586,7 @@
     //             console.log( therapyName,
     //                 therapistIds, // Sending the array of therapist IDs
     //                 formattedPlans) // Sending the formatted plans)
-    //             const response = await axios.post('http://localhost:3001/api/add-therapy', {
+    //             const response = await axios.post('{process.env.REACT_APP_API_URL}/api/add-therapy', {
     //                 therapyName,
     //                 therapistIds, // Sending the array of therapist IDs
     //                 plan: formattedPlans // Sending the formatted plans
@@ -760,10 +760,10 @@
 //   useEffect(() => {
 //     const fetchPatientsAndTherapists = async () => {
 //       try {
-//         const patientsResponse = await axios.get('http://localhost:3001/api/allpatients');
+//         const patientsResponse = await axios.get('{process.env.REACT_APP_API_URL}/api/allpatients');
 //         setPatients(patientsResponse.data);
         
-//         const therapistsResponse = await axios.get('http://localhost:3001/api/therapists');
+//         const therapistsResponse = await axios.get('{process.env.REACT_APP_API_URL}/api/therapists');
 //         setTherapists(therapistsResponse.data);
 //       } catch (error) {
 //         console.error('Error fetching patients or therapists:', error);
@@ -779,7 +779,7 @@
 
 //     if (patientId) {
 //       try {
-//         const patientResponse = await axios.get(`http://localhost:3001/api/patients/${patientId}`);
+//         const patientResponse = await axios.get(`{process.env.REACT_APP_API_URL}/api/patients/${patientId}`);
 //         const { therapyCompletedDays, therapyPlan } = patientResponse.data; // Adjust as per your response structure
 //         setTherapyCompletedDays(therapyCompletedDays);
 //         settherapyPlan(therapyPlan);
@@ -817,7 +817,7 @@
 //     console.log("days left",therapyDaysLeft )
 
 //     try {
-//       await axios.post('http://localhost:3001/api/add-therapy', {
+//       await axios.post('{process.env.REACT_APP_API_URL}/api/add-therapy', {
 //         patientName: selectedPatient,
 //         therapyNames: Object.keys(therapyNames).filter(name => therapyNames[name]),
 //         therapists: selectedTherapist,
@@ -1017,10 +1017,10 @@
 //   useEffect(() => {
 //     const fetchPatientsAndTherapists = async () => {
 //       try {
-//         const patientsResponse = await axios.get('http://localhost:3001/api/allpatients');
+//         const patientsResponse = await axios.get('{process.env.REACT_APP_API_URL}/api/allpatients');
 //         setPatients(patientsResponse.data);
         
-//         const therapistsResponse = await axios.get('http://localhost:3001/api/therapists');
+//         const therapistsResponse = await axios.get('{process.env.REACT_APP_API_URL}/api/therapists');
 //         setTherapists(therapistsResponse.data);
 //       } catch (error) {
 //         console.error('Error fetching patients or therapists:', error);
@@ -1036,7 +1036,7 @@
 
 //     if (patientId) {
 //       try {
-//         const patientResponse = await axios.get(`http://localhost:3001/api/patients/${patientId}`);
+//         const patientResponse = await axios.get(`{process.env.REACT_APP_API_URL}/api/patients/${patientId}`);
 //         const { therapyCompletedDays, therapyPlan } = patientResponse.data; // Adjust as per your response structure
 //         setTherapyCompletedDays(therapyCompletedDays);
 //         settherapyPlan(therapyPlan);
@@ -1073,7 +1073,7 @@
 // //     console.log("days left",therapyDaysLeft );
 
 // //     try {
-// //       await axios.post('http://localhost:3001/api/add-therapy', {
+// //       await axios.post('{process.env.REACT_APP_API_URL}/api/add-therapy', {
 // //         patientName: selectedPatient,
 // //         therapyNames: Object.keys(therapyNames).filter(name => therapyNames[name]),
 // //         therapists: selectedTherapist,
@@ -1105,7 +1105,7 @@
 
 // //     try {
 // //       // Post the therapy data to the server
-// //       await axios.post('http://localhost:3001/api/add-therapy', {
+// //       await axios.post('{process.env.REACT_APP_API_URL}/api/add-therapy', {
 // //         patientName: selectedPatient,
 // //         therapyNames: Object.keys(therapyNames).filter(name => therapyNames[name]),
 // //         therapists: selectedTherapist,
@@ -1145,7 +1145,7 @@
 //     const updatedTherapyCompletedDays = therapyCompletedDays + Number(daysToAssign);
   
 //     try {
-//       await axios.post('http://localhost:3001/api/add-therapy', {
+//       await axios.post('{process.env.REACT_APP_API_URL}/api/add-therapy', {
 //         patientName: selectedPatient,
 //         therapyNames: Object.keys(therapyNames).filter(name => therapyNames[name]),
 //         therapists: selectedTherapist,
@@ -1494,8 +1494,8 @@
 //     const fetchData = async () => {
 //       try {
 //         const [patientsResponse, therapistsResponse] = await Promise.all([
-//           axios.get('http://localhost:3001/api/allpatients'),
-//           axios.get('http://localhost:3001/api/therapists')
+//           axios.get('{process.env.REACT_APP_API_URL}/api/allpatients'),
+//           axios.get('{process.env.REACT_APP_API_URL}/api/therapists')
 //         ]);
 
 //         setPatients(patientsResponse.data);
@@ -1543,7 +1543,7 @@
 // //     console.log(therapyCompletedDays , daysToAssign)
 
 // //     try {
-// //       await axios.post('http://localhost:3001/api/add-therapy', {
+// //       await axios.post('{process.env.REACT_APP_API_URL}/api/add-therapy', {
 // //         patientName: selectedPatient,
 // //         therapyNames: Object.keys(therapyNames).filter(name => therapyNames[name]),
 // //         therapists: selectedTherapist,
@@ -1581,7 +1581,7 @@
   
 //     try {
 //       // Step 1: Add the therapy record
-//     const therapyResponse=  await axios.post('http://localhost:3001/api/add-therapy', {
+//     const therapyResponse=  await axios.post('{process.env.REACT_APP_API_URL}/api/add-therapy', {
 //         patientName: selectedPatient,
 //         therapyNames: Object.keys(therapyNames).filter(name => therapyNames[name]),
 //         therapists: selectedTherapist,
@@ -1597,7 +1597,7 @@
 //       const therapyId = therapyResponse.data.therapy._id;
 //       console.log(therapyResponse.data.therapy._id)
 //       // Step 2: Update the patient with the new therapyCompletedDays
-//       await axios.put(`http://localhost:3001/api/update-patient/${selectedPatient}`, {
+//       await axios.put(`{process.env.REACT_APP_API_URL}/api/update-patient/${selectedPatient}`, {
 //         therapyCompletedDays: therapyCompletedDays+updatedTherapyCompletedDays,
 //          // Update with new therapy completed days
 //          therapyId: [therapyId],
@@ -1806,8 +1806,8 @@ const AddTherapy = () => {
     const fetchData = async () => {
       try {
         const [patientsResponse, therapistsResponse] = await Promise.all([
-          axios.get('http://localhost:3001/api/allpatients'),
-          axios.get('http://localhost:3001/api/therapists'),
+          axios.get(`${process.env.REACT_APP_API_URL}/api/allpatients`),
+          axios.get(`${process.env.REACT_APP_API_URL}/api/therapists`),
         ]);
 
         setPatients(patientsResponse.data);
@@ -1870,7 +1870,7 @@ const AddTherapy = () => {
   //   console.log(updatedTherapyCompletedDays)
   
   //   try {
-  //     const therapyResponse = await axios.post('http://localhost:3001/api/add-therapy', {
+  //     const therapyResponse = await axios.post('{process.env.REACT_APP_API_URL}/api/add-therapy', {
   //       patientName: selectedPatient,
   //       therapyNames: Object.keys(therapyNames).filter(name => therapyNames[name]),
   //       therapists: selectedTherapist,
@@ -1884,7 +1884,7 @@ const AddTherapy = () => {
   
   //     const therapyId = therapyResponse.data.therapy._id;
   //     console.log(updatedTherapyCompletedDays)
-  //     await axios.put(`http://localhost:3001/api/update-patient/${selectedPatient}`, {
+  //     await axios.put(`{process.env.REACT_APP_API_URL}/api/update-patient/${selectedPatient}`, {
   //       therapyCompletedDays: therapyCompletedDays + updatedTherapyCompletedDays,
   //       therapyId: [therapyId],
   //     });
@@ -1910,7 +1910,7 @@ const AddTherapy = () => {
 
     if (selectedPatientId) {
       try {
-        const response = await axios.get(`http://localhost:3001/api/patient/${selectedPatientId}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/patient/${selectedPatientId}`);
         setPatientDetails(response.data); // Store patient details
         setTherapyPlan(response.data.therapyPlan); // Set therapy plan directly from patient details
         setTherapyCompletedDays(response.data.therapyCompletedDays); // Set completed days
@@ -1929,7 +1929,7 @@ const AddTherapy = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // const patientDetails= await axios.get(`http://localhost:3001/api/patient/${selectedPatient}`)
+    // const patientDetails= await axios.get(`{process.env.REACT_APP_API_URL}/api/patient/${selectedPatient}`)
     // console.log(patientDetails)
     // console.log(patientDetails.data.therapyPlan)
     // setTherapyPlan(patientDetails.data.therapyPlan)
@@ -1963,7 +1963,7 @@ const AddTherapy = () => {
     console.log("intAssignedDays",intAssignedDays)
   
     try {
-      const therapyResponse = await axios.post('http://localhost:3001/api/add-therapy', {
+      const therapyResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/add-therapy`, {
         patientName: selectedPatient,
         therapyNames: Object.keys(therapyNames).filter((name) => therapyNames[name]),
         therapists: selectedTherapist,
@@ -1980,7 +1980,7 @@ console.log("patient detaislsssssssssssssssssssssss", patientDetails)
       const updatedTherapyIdArray = [...patientDetails.therapyId, therapyId];
       console.log(updatedTherapyIdArray)
   
-      await axios.put(`http://localhost:3001/api/update-patient/${selectedPatient}`, {
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/update-patient/${selectedPatient}`, {
         therapyCompletedDays: updatedTherapyCompletedDays,
         therapyId: updatedTherapyIdArray,
       });

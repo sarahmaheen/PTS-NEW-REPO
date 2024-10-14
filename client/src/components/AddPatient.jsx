@@ -23,7 +23,7 @@
 //   useEffect(() => {
 //     const fetchTherapies = async () => {
 //       try {
-//         const response = await axios.get("http://localhost:3001/api/therapies", {
+//         const response = await axios.get("{process.env.REACT_APP_API_URL}/api/therapies", {
 //           headers: {
 //             Authorization: `Bearer ${localStorage.getItem("token")}`, // Add JWT token
 //           },
@@ -36,7 +36,7 @@
 
 //     const fetchTherapists = async () => {
 //       try {
-//         const response = await axios.get("http://localhost:3001/api/therapists", {
+//         const response = await axios.get("{process.env.REACT_APP_API_URL}/api/therapists", {
 //           headers: {
 //             Authorization: `Bearer ${localStorage.getItem("token")}`, // Add JWT token
 //           },
@@ -62,7 +62,7 @@
 //     setSuccessMessage("");
 
 //     try {
-//       const response = await axios.post("http://localhost:3001/api/add-patient", patientData, {
+//       const response = await axios.post("{process.env.REACT_APP_API_URL}/api/add-patient", patientData, {
 //         headers: {
 //           Authorization: `Bearer ${localStorage.getItem("token")}`,
 //         },
@@ -287,7 +287,7 @@
 //   useEffect(() => {
 //     const fetchTherapists = async () => {
 //       try {
-//         const response = await axios.get('http://localhost:3001/api/therapists'); // Adjust the URL to your endpoint
+//         const response = await axios.get('{process.env.REACT_APP_API_URL}/api/therapists'); // Adjust the URL to your endpoint
 //         setTherapists(response.data);
 //       } catch (error) {
 //         console.error('Error fetching therapists:', error);
@@ -331,7 +331,7 @@
 //     e.preventDefault();
 //     try {
 //       console.log(formData);
-//       const response = await axios.post('http://localhost:3001/api/add-patient', formData);
+//       const response = await axios.post('{process.env.REACT_APP_API_URL}/api/add-patient', formData);
 //       console.log('Patient added successfully', response.data);
 //     } catch (error) {
 //       console.error('There was an error adding the patient!', error);
@@ -561,7 +561,7 @@ const AddPatient = () => {
   useEffect(() => {
     const fetchTherapists = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/therapists');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/therapists`);
         setTherapists(response.data);
       } catch (error) {
         console.error('Error fetching therapists:', error);
@@ -623,7 +623,7 @@ const AddPatient = () => {
 
     try {
       console.log('Sending Data:', payload);
-      const response = await axios.post('http://localhost:3001/api/add-patient', payload);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/add-patient`, payload);
       console.log('Patient added successfully', response.data);
     } catch (error) {
       console.error('Error adding patient:', error);

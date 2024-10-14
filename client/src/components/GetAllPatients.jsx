@@ -9,7 +9,7 @@
 //   useEffect(() => {
 //     const fetchParents = async () => {
 //       try {
-//         const response = await axios.get("http://localhost:3001/api/allpatients", {
+//         const response = await axios.get("{process.env.REACT_APP_API_URL}/api/allpatients", {
 //           headers: {
 //             Authorization: `Bearer ${localStorage.getItem("token")}`, // Include the JWT token
 //           },
@@ -28,7 +28,7 @@
 //   const handleDelete = async (id) => {
 //     try {
 //       console.log(id)
-//       await axios.delete(`http://localhost:3001/api/delete-patient/${id}`, {
+//       await axios.delete(`{process.env.REACT_APP_API_URL}/api/delete-patient/${id}`, {
 //         headers: {
 //           Authorization: `Bearer ${localStorage.getItem("token")}`,
 //         },
@@ -143,7 +143,7 @@
 //   useEffect(() => {
 //     const fetchPatients = async () => {
 //       try {
-//         const response = await axios.get("http://localhost:3001/api/allpatients", {
+//         const response = await axios.get("{process.env.REACT_APP_API_URL}/api/allpatients", {
 //           headers: {
 //             Authorization: `Bearer ${localStorage.getItem("token")}`, // Include the JWT token
 //           },
@@ -161,7 +161,7 @@
 //   // Function to handle delete patient
 //   const handleDelete = async (id) => {
 //     try {
-//       await axios.delete(`http://localhost:3001/api/patient/${id}`, {
+//       await axios.delete(`{process.env.REACT_APP_API_URL}/api/patient/${id}`, {
 //         headers: {
 //           Authorization: `Bearer ${localStorage.getItem("token")}`,
 //         },
@@ -210,7 +210,7 @@
 //     try {
 //       console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",updatePatient)
 //       const response = await axios.put(
-//         `http://localhost:3001/api/update-patient/${updatePatient._id}`,
+//         `{process.env.REACT_APP_API_URL}/api/update-patient/${updatePatient._id}`,
 //         formData,
 //         {
 //           headers: {
@@ -467,7 +467,7 @@ const GetAllPatients = () => {
   useEffect(() => {
     const fetchPatients = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/api/allpatients", {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/allpatients`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`, // Include the JWT token
           },
@@ -485,7 +485,7 @@ const GetAllPatients = () => {
   // Function to handle delete patient
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3001/api/patient/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/patient/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -534,7 +534,7 @@ const GetAllPatients = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:3001/api/update-patient/${updatePatient._id}`,
+        `${process.env.REACT_APP_API_URL}/api/update-patient/${updatePatient._id}`,
         formData,
         {
           headers: {
