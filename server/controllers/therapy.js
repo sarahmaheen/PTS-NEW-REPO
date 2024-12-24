@@ -281,4 +281,38 @@ router.get('/therapy-distribution', verifyJWT, async (req, res) => {
     res.status(500).json({ message: 'Server error' }); // Handle errors
   }
 });
+
+
+
+router.post('/therapistsArrayForPatient', async (req, res) => {
+  try {
+    const { therapistIds } = req.body; // Array of therapist document IDs sent from the frontend
+
+    if (!therapistIds || !Array.isArray(therapistIds) || therapistIds.length === 0) {
+      return res.status(400).json({ message: 'Therapist IDs are required and should be an array' });
+    }
+
+    // Fetch therapists from the database using the array of IDs
+    const therapists = await Therapist.find({ _id: { $in: therapistIds } });
+
+    // Check if therapists were found
+    if (therapists.length === 0) {
+      return res.status(404).json({ message: 'No therapists found with the given IDs' });
+    }
+
+    // Return the therapist details in the response
+    res.status(200).json(therapists);
+  } catch (error) {
+    console.error('Error fetching therapists:', error);
+    res.status(500).json({ message: 'Server error', error });
+  }
+});
+
+
+
+
+
+
+
+
 export default router;

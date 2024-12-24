@@ -9,7 +9,7 @@ import addtherapy from "./controllers/therapy.js"
 // import Therapist from './models/Therapistmodel.js';
 // import ./dbConnect
 const app = express();
-const port=process.env.port || 3001
+const port=process.env.port || 3007
 
 app.use(cors()); // Enable CORS
 app.use(express.json());
