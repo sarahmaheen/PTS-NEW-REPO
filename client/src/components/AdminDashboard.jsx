@@ -20,7 +20,7 @@ const AdminDashboard = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        console.log("ppppppppp",patientResponse.data.count)
+        // console.log("ppppppppp",patientResponse.data.count)
         setPatientCount(patientResponse.data.count);
 
         // Fetch the count of therapists
@@ -37,7 +37,7 @@ const AdminDashboard = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        console.log("jeeeeeeeeeeeee",therapistResponse);
+        // console.log("jeeeeeeeeeeeee",therapistResponse);
         setTherapyDistribution(therapyResponse.data.count);
 
         // Fetch new patients data for the NewPatientsChart

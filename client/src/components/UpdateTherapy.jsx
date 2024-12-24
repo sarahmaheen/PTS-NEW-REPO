@@ -22,7 +22,7 @@ const UpdateTherapy = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(therapyId)
+        // console.log(therapyId)
         // Fetch therapy data
         const therapyResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/therapies/${therapyId}`);
         setPatientName(therapistsResponse.data.patientName || '')
